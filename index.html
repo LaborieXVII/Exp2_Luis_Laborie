@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+    integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+    crossorigin=""/>
+    <link rel="icon" href="img/icono.ico">
+    <script src="js/metodos.js"></script>
+    <title>+Cotas</title>
+  </head>
+
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="bi bi-three-dots text-light" style="font-size: 2rem;"></span>
+          </button>
+          <a class="navbar-brand" href="#">
+            <img src="img/logomascotas.png" width="150" alt="">
+          </a>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <hr class="d-lg-none text-white">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="index.html">Inicio</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Tienda</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  Categorías
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="#">Perros</a></li>
+                  <li><a class="dropdown-item" href="#">Gatos</a></li>
+                  <li><a class="dropdown-item" href="#">Aves</a></li>
+                  <li><a class="dropdown-item" href="#">Peces</a></li>
+                  <li><a class="dropdown-item" href="#">Reptiles</a></li>
+                  <li><a class="dropdown-item" href="#">Roedores</a></li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Ofertas</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Blog</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Galería</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Acerca de</a>
+              </li>
+            </ul>
+            <hr class="d-lg-none text-white">
+            <div class="d-flex justify-content-center ">
+              <a href="#"><i class="bi bi-bag-heart-fill text-light d-none d-lg-block" style="font-size: 2rem; margin-right: 15px;"></i></a>
+              <a href="inicioSesion.html"><i class="bi bi-person-circle text-light d-none d-lg-block" style="font-size: 2rem;"></i></a>
+              <a href="#" class="btn btn-warning me-3 d-lg-none" type="submit"><i class="bi bi-bag-heart-fill text-dark me-1"></i>Bolsa</a>
+              <a href="inicioSesion.html" class="btn btn-warning ms-3 d-lg-none" type="submit"><i class="bi bi-person-circle text-dark me-1"></i>Ingresar</a>
+            </div>
+            <hr class="d-lg-none text-white mb-0">
+          </div>
+        </div>
+      </nav>
+      <div class="search-container container-fluid">
+        <form class="d-flex justify-content-center rounded-4" role="search">
+            <input class="form-control mb-2" type="search" placeholder="Busquémos algo para tu mascota..." aria-label="Buscar" required required onchange="upperText(this)" onmousemove="colorOrange(this)">
+        </form>
+      </div>
+    </header>
+
+    <main>
+      <div id="carouselExampleDark" class="carousel carousel-dark slide carousel-fade" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active" data-bs-interval="7000">
+            <img src="img/Carousel/Carousel1-1.jpg" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item" data-bs-interval="7000">
+            <img src="img/Carousel/Carousel2-2.jpg" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item" data-bs-interval="7000">
+            <img src="img/Carousel/Carousel3.jpg" class="d-block w-100" alt="...">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Anterior</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Siguiente</span>
+        </button>
+      </div>
+
+      <section class="py-12 bg-light">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 text-center">
+              <h2 class="mb-3 mt-5">Categorías</h2>
+              <p class="mb-4">
+                Productos para todo tipo de mascotas
+              </p>
+            </div>
+          </div>
+          <div class="row mx-n1 mb-5">
+            <div class="col-6 col-sm-4 col-md px-1">
+              <div class="card mb-2 border-0 imagen-zoom">
+                <img src="img/categorias/perro.jpg" alt="..." class="card-img">
+              </div>
+            </div>
+
+            <div class="col-6 col-sm-4 col-md px-1">
+              <div class="card mb-2 border-0 imagen-zoom">
+                <img src="img/categorias/gato.jpg" alt="..." class="card-img">
+              </div>
+            </div>
+            <div class="col-6 col-sm-4 col-md px-1">
+              <div class="card mb-2 border-0 imagen-zoom">
+                <img src="img/categorias/ave.jpg" alt="..." class="card-img">
+              </div>
+            </div>
+            <div class="col-6 col-sm-4 col-md px-1">
+              <div class="card mb-2 border-0 imagen-zoom">
+                <img src="img/categorias/pez.jpg" alt="..." class="card-img">
+              </div>
+            </div>
+            <div class="col-6 col-sm-4 col-md px-1">
+              <div class="card mb-2 border-0 imagen-zoom">
+                <img src="img/categorias/reptil.jpg" alt="..." class="card-img">
+              </div>
+            </div>
+            <div class="col-6 col-sm-4 col-md px-1">
+              <div class="card mb-2 border-0 imagen-zoom">
+                <img src="img/categorias/roedor.jpg" alt="..." class="card-img">
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-5 imagen-fondo d-flex align-items-center text-end">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6"></div>
+            <div><h2>Próximamente nuevos productos</h2></div>
+            <div class="col d-flex justify-content-end">
+              <div class="d-flex countdown">
+                <div class="text-center me-2">
+                  <div class="fs-1 fw-bolder text-dark" id="days">00</div>
+                  <div class="heading-xxs text-muted">Días</div>
+                </div>
+                <div class="px-1">
+                  <div class="fs-1 fw-bolder text-dark">:</div>
+                </div>
+                <div class="text-center me-2">
+                  <div class="fs-1 fw-bolder text-dark" id="hours">00</div>
+                  <div class="heading-xxs text-muted">Horas</div>
+                </div>
+                <div class="px-1">
+                  <div class="fs-1 fw-bolder text-dark">:</div>
+                </div>
+                <div class="text-center me-2">
+                  <div class="fs-1 fw-bolder text-dark" id="minutes">00</div>
+                  <div class="heading-xxs text-muted">Minutos</div>
+                </div>
+                <div class="px-1">
+                  <div class="fs-1 fw-bolder text-dark">:</div>
+                </div>
+                <div class="text-center">
+                  <div class="fs-1 fw-bolder text-dark" id="seconds">00</div>
+                  <div class="heading-xxs text-muted">Segundos</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+
+      <section class="my-lg-14 my-8 mt-5 mb-5">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 text-center mb-3">
+              <h3 class="mb-0">Productos Destacados</h3>
+            </div>
+          </div>
+  
+          <div class="row g-4 row-cols-lg-5 row-cols-2 row-cols-md-3">
+            <div class="col">
+              <div class="card">
+                <div class="card-body">
+                  <div class="text-center position-relative ">
+                    <a href="#!"> <img src="img/productos/producto1.jpg" class="mb-3 img-fluid"></a>
+                  </div>
+                  <div class="text-small mb-1"><a href="#!" class="text-decoration-none text-muted"><small>Carne Adulto 3kg</small></a></div>
+                  <h2 class="fs-6"><a href="#" class="text-dark text-decoration-none">MasterDog</a></h2>
+                  <div class="d-flex justify-content-between align-items-center mt-3">
+                    <div>
+                      <span class="text-dark">$9.990</span>
+                    </div>
+                    <div>
+                      <a href="#!" class="btn btn-warning btn-sm">Añadir</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card">
+                <div class="card-body">
+                  <div class="text-center position-relative ">
+                    <a href="#!"> <img src="img/productos/producto2.jpg" class="mb-3 img-fluid"></a>
+                  </div>
+                  <div class="text-small mb-1"><a href="#!" class="text-decoration-none text-muted"><small>Rascador Móvil</small></a></div>
+                  <h2 class="fs-6"><a href="#" class="text-dark text-decoration-none">Genérico</a></h2>
+                  <div class="d-flex justify-content-between align-items-center mt-3">
+                    <div>
+                      <span class="text-dark">$13.990</span>
+                    </div>
+                    <div>
+                      <a href="#!" class="btn btn-warning btn-sm">Añadir</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card">
+                <div class="card-body">
+                  <div class="text-center position-relative ">
+                    <a href="#!"> <img src="img/productos/producto3.jpg" class="mb-3 img-fluid"></a>
+                  </div>
+                  <div class="text-small mb-1"><a href="#!" class="text-decoration-none text-muted"><small>Alimento 500g</small></a></div>
+                  <h2 class="fs-6"><a href="#" class="text-dark text-decoration-none">Champion</a></h2>
+                  <div class="d-flex justify-content-between align-items-center mt-3">
+                    <div>
+                      <span class="text-dark">$3.990</span>
+                    </div>
+                    <div>
+                      <a href="#!" class="btn btn-warning btn-sm">Añadir</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card">
+                <div class="card-body">
+                  <div class="text-center position-relative ">
+                    <a href="#!"> <img src="img/productos/producto4.jpg" class="mb-3 img-fluid"></a>
+                  </div>
+                  <div class="text-small mb-1"><a href="#!" class="text-decoration-none text-muted"><small>Carne Cachorro 3kg</small></a></div>
+                  <h2 class="fs-6"><a href="#" class="text-dark text-decoration-none">Pedigree</a></h2>
+                  <div class="d-flex justify-content-between align-items-center mt-3">
+                    <div>
+                      <span class="text-dark">$10.490</span>
+                    </div>
+                    <div>
+                      <a href="#!" class="btn btn-warning btn-sm">Añadir</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card">
+                <div class="card-body">
+                  <div class="text-center position-relative ">
+                    <a href="#!"> <img src="img/productos/producto5.jpg" class="mb-3 img-fluid"></a>
+                  </div>
+                  <div class="text-small mb-1"><a href="#!" class="text-decoration-none text-muted"><small>Casa Perro Grande</small></a></div>
+                  <h2 class="fs-6"><a href="#" class="text-dark text-decoration-none">Rimax</a></h2>
+                  <div class="d-flex justify-content-between align-items-center mt-3">
+                    <div>
+                      <span class="text-dark">$69.990</span>
+                    </div>
+                    <div>
+                      <a href="#!" class="btn btn-warning btn-sm">Añadir</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card">
+                <div class="card-body">
+                  <div class="text-center position-relative ">
+                    <a href="#!"> <img src="img/productos/producto6.jpg" class="mb-3 img-fluid"></a>
+                  </div>
+                  <div class="text-small mb-1"><a href="#!" class="text-decoration-none text-muted"><small>Carne y Leche 85g</small></a></div>
+                  <h2 class="fs-6"><a href="#" class="text-dark text-decoration-none">Felinnes</a></h2>
+                  <div class="d-flex justify-content-between align-items-center mt-3">
+                    <div>
+                      <span class="text-dark">$4.490</span>
+                    </div>
+                    <div>
+                      <a href="#!" class="btn btn-warning btn-sm">Añadir</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card">
+                <div class="card-body">
+                  <div class="text-center position-relative ">
+                    <a href="#!"> <img src="img/productos/producto7.jpg" class="mb-3 img-fluid"></a>
+                  </div>
+                  <div class="text-small mb-1"><a href="#!" class="text-decoration-none text-muted"><small>Juegue gatos</small></a></div>
+                  <h2 class="fs-6"><a href="#" class="text-dark text-decoration-none">Genérico</a></h2>
+                  <div class="d-flex justify-content-between align-items-center mt-3">
+                    <div>
+                      <span class="text-dark">$2.990</span>
+                    </div>
+                    <div>
+                      <a href="#!" class="btn btn-warning btn-sm">Añadir</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card">
+                <div class="card-body">
+                  <div class="text-center position-relative ">
+                    <a href="#!"> <img src="img/productos/producto8.jpg" class="mb-3 img-fluid"></a>
+                  </div>
+                  <div class="text-small mb-1"><a href="#!" class="text-decoration-none text-muted"><small>Carne Seco 1kg</small></a></div>
+                  <h2 class="fs-6"><a href="#" class="text-dark text-decoration-none">Whiskas</a></h2>
+                  <div class="d-flex justify-content-between align-items-center mt-3">
+                    <div>
+                      <span class="text-dark">$3.670</span>
+                    </div>
+                    <div>
+                      <a href="#!" class="btn btn-warning btn-sm">Añadir</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card">
+                <div class="card-body">
+                  <div class="text-center position-relative ">
+                    <a href="#!"> <img src="img/productos/producto9.jpg" class="mb-3 img-fluid"></a>
+                  </div>
+                  <div class="text-small mb-1"><a href="#!" class="text-decoration-none text-muted"><small>Alimento 500g</small></a></div>
+                  <h2 class="fs-6"><a href="#" class="text-dark text-decoration-none">Champion</a></h2>
+                  <div class="d-flex justify-content-between align-items-center mt-3">
+                    <div>
+                      <span class="text-dark">$3.990</span>
+                    </div>
+                    <div>
+                      <a href="#!" class="btn btn-warning btn-sm">Añadir</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card">
+                <div class="card-body">
+                  <div class="text-center position-relative ">
+                    <a href="#!"> <img src="img/productos/producto10.jpg" class="mb-3 img-fluid"></a>
+                  </div>
+                  <div class="text-small mb-1"><a href="#!" class="text-decoration-none text-muted"><small>Rueda</small></a></div>
+                  <h2 class="fs-6"><a href="#" class="text-dark text-decoration-none">Kaytee</a></h2>
+                  <div class="d-flex justify-content-between align-items-center mt-3">
+                    <div>
+                      <span class="text-dark">$9.990</span>
+                    </div>
+                    <div>
+                      <a href="#!" class="btn btn-warning btn-sm">Añadir</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      
+
+      <section class="container my-5 mt-5">
+        <div class="d-flex justify-content-center mb-3"><h3 class>Encuéntranos en Av. Esq. Blanca 501, Maipú, Región Metropolitana</h3></div>
+        <div id="map"></div>
+      </section>
+
+    </main>
+
+    <footer class="sticky-bottom">
+      <div class="container text-light pt-5">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 border-top">
+          <div class="col mb-2 mt-3">
+            <a href="#" class="d-flex align-items-center mb-3 link-body-emphasis">
+              <img src="img/logomascotas.png" class="logo" alt="">
+            </a>
+          </div>
+
+          <div class="col mb-3 mt-3">
+            <h5>Contáctanos</h5>
+            <ul class="nav flex-column">
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">+569 12345678</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Mascotas.cotas@gmail.com</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">(9:00 -20:00)</a></li>
+            </ul>
+          </div>
+
+          <div class="col mb-3 mt-3">
+            <h5>Accesos</h5>
+            <ul class="nav flex-column">
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Inicio</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Iniciar sesión</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Registrarse</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">categorías</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Tienda</a></li>
+            </ul>
+          </div>
+      
+          <div class="col mb-3 mt-3">
+            <h5>Ayuda</h5>
+            <ul class="nav flex-column">
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Centro de Ayuda</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Formas de pago</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Sigue tu orden</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Cambio y devoluciones</a></li>
+            </ul>
+          </div>
+      
+          <div class="col mb-3 mt-3">
+            <h5>Compañia</h5>
+            <ul class="nav flex-column">
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Sobre nosotros</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Terminos y condiciones</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Política de privacidad</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="container border-top align-items-center justify-content-center">
+          <ul class="d-flex list-unstyled justify-content-center mb-0 pt-2 gap-3">
+            <li><a class="link-body-emphasis" href="#"><i class="bi bi-facebook text-light"></i></a></li>
+            <li><a class="link-body-emphasis" href="#"><i class="bi bi-instagram text-light"></i></a></li>
+            <li><a class="link-body-emphasis" href="#"><i class="bi bi-twitter text-light"></i></a></li>
+            <li><a class="link-body-emphasis" href="#"><i class="bi bi-tiktok text-light"></i></a></li>
+            <li><a class="link-body-emphasis" href="#"><i class="bi bi-whatsapp text-light"></i></a></li>
+          </ul>
+        </div>
+        <div class="d-flex container justify-content-center text-center p-2 text-light">
+          <span>© 2023 Todos los derechos reservados | Desarrollado por Luis Laborie.</span>
+        </div>
+      </div>
+    </footer>
+    
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+    integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+    crossorigin=""></script>
+    <script src="js/mapa.js"></script>
+    <script src="js/countdown.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  </body>
+</html>
