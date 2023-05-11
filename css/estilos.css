@@ -139,7 +139,7 @@ label.error {
 }
 
 .imagen-fondo {
-  background-image: url(/img/Carousel/reloj.jpg);
+  background-image: url(../img/Carousel/reloj.jpg);
   background-position: 50%!important;
   background-repeat: no-repeat!important;
   background-size: cover!important;
